@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Borders and Style CSS Section -->
+		<meta charset="utf-8">
+		<title>Escape the Haunted Castle</title>
+		<style type = "text/css">
+			div	{ text-align: center;
+				  width: 50%;
+				  position: relative;
+				  left: 25%;
+				  border-width: 10px; }
+			.thick	{ border-width: thick;	}
+			.double	{ border-style: double; }
+			.blue   { border-color: blue;   }
+			#p1{font-weight: bold; color: darkblue; font-size: 24pt}
+		</style>
+	</head>
+	<body>
+		<div class = "thick blue double">Welcome to <br><p id = "p1">Escape the Haunted Castle</p>
+		</br>
+		</br>
+		<textarea readonly rows="20" cols="30">You are stuck in the Knight's Bedroom. You are standing at the door looking at the hallway which leads you throughout the castle.</textarea>
+		</br>
+		</br>
+		<input type="button" value="North" onclick="north()"><br/><br/>
+		<input type="button" value="South" onclick="south()"><br/><br/>
+		<input type="button" value="East" onclick="east()"><br/><br/>
+		<input type="button" value="West" onclick="west()"><br/><br/>
+	<!-- This begins the javascript section, if, ifelse statements -->
+	<script>
+	
+		
