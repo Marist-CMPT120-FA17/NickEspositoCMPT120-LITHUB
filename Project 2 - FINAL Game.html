@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!--Nick Esposito-->
+<!--Project #2-->
+<!--September 28th, 2017-->
+	<head>
+		<meta charset="utf-8">
+		<title>Escape Hancock!</title>
+		<!-- Borders and Style CSS Section -->
+		<!-- See Chapter 4 in Textbook for borders -->
+		<style type = "text/css">
+			div	{ text-align: center;
+				  width: 50%;
+				  position: relative;
+				  left: 25%;
+				  border-width: 10px; }
+			.thick	{ border-width: thick;	}
+			.double	{ border-style: double; }
+			.blue   { border-color: blue;   }
+			#p1{font-weight: bold; color: cadetblue; font-size: 24pt}
+		</style>
+	</head>
+	<body>
+		<div class = "thick blue double">You are now playing </br><p id = "p1">Escape Hancock</p>
+		<br/>
+		<br/>
+		<textarea readonly id="message" name="message" rows="20" cols="40">You are stuck on the top floor of the Hancock Center at Marist and freshman have overrun the building. You must find your way out of the building! You are in the Computer Science Office and you can only leave through the main entrence on the first floor.
+		</textarea>
+		<br/>
+		<br/>
+	<!-- This begins the javascript section -->
+	<!-- First javascript for functions, read throughly -->
+	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens -->
+	<!-- These are the event handlers for each button -->
+	<script type = "text/javascript">
+	// NORTH
+		function btnNorth_click() {
+			document.getElementById("message").value = "Well, Well, Well. You're traveling down the staircase to the second floor. Nice job, but now the power is flickering, so move faster!";
+			}
+	//SOUTH
+		function btnSouth_click() {
+			document.getElementById("message").value = "Shit! There's a mob of angry freshman chasing you now! Quick, run the other way NOW!";
+			}
+	//EAST
+		function btnEast_click() {
+			document.getElementById("message").value = "Whoa. You just avoided the angry mob of freshman. Keep runnning down the hall, you're just passing the investment center now!";
+			}	
+	//WEST
+		function btnWest_click() {
+			document.getElementById("message").value = "YES THE DOORS! YOU RAN SO FAST YOU BYPASSED ALL THE FRESHMAN! YOU SEE THE ROAD AND RUN OUTSIDE! YOU HAVE SUCESSFULLY ESCAPED WOOHOO!";
+			}
+	</script>
+		<!--Buttons are now being created, and they will call the functions via the onclick value -->
+		<input type="button" value="North" onclick="btnNorth_click()" id="btnNorth" value="North"/><br/><br/>
+		<input type="button" value="South" onclick="btnSouth_click()" id="btnSouth" value="South"/><br/><br/>
+		<input type="button" value="East" onclick="btnEast_click()" id="btnEast" value="East"/><br/><br/>
+		<input type="button" value="West" onclick="btnWest_click()" id="btnWest" value="West"/><br/><br/>
+			
