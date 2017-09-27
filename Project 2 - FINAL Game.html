@@ -33,7 +33,7 @@
 	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens -->
 	<!-- These are the event handlers for each button -->
 	<script type = "text/javascript">
-	// NORTH
+	//NORTH
 		function btnNorth_click() {
 			document.getElementById("message").value = "Well, Well, Well. You're traveling down the staircase to the second floor. Nice job, but now the power is flickering, so move faster!";
 			}
@@ -49,10 +49,26 @@
 		function btnWest_click() {
 			document.getElementById("message").value = "YES THE DOORS! YOU RAN SO FAST YOU BYPASSED ALL THE FRESHMAN! YOU SEE THE ROAD AND RUN OUTSIDE! YOU HAVE SUCESSFULLY ESCAPED WOOHOO!";
 			}
+	//SCORE, adds 5 points the first time the button is clicked; max is 20 points
+		var score = 0;
+		function points() {
+			score += 5;
+        document.getElementById("gameScore").innerHTML = score;
+    	}
 	</script>
-		<!--Buttons are now being created, and they will call the functions via the onclick value -->
-		<input type="button" value="North" onclick="btnNorth_click()" id="btnNorth" value="North"/><br/><br/>
-		<input type="button" value="South" onclick="btnSouth_click()" id="btnSouth" value="South"/><br/><br/>
-		<input type="button" value="East" onclick="btnEast_click()" id="btnEast" value="East"/><br/><br/>
-		<input type="button" value="West" onclick="btnWest_click()" id="btnWest" value="West"/><br/><br/>
+	<br/>
+		<!--Buttons are now being created, and they will call the functions via the onclick value, which also add 5 points to score -->
+		<input type="button" value="North" onclick="btnNorth_click(); points();this.onclick=null" id="btnNorth" value="North"/><br/><br/>
+		<input type="button" value="South" onclick="btnSouth_click(); points();this.onclick=null" id="btnSouth" value="South"/><br/><br/>
+		<input type="button" value="East" onclick="btnEast_click(); points();this.onclick=null" id="btnEast" value="East"/><br/><br/>
+		<input type="button" value="West" onclick="btnWest_click(); points();this.onclick=null" id="btnWest" value="West"/><br/><br/>
+	
+	<em>Score:</em> <a id="gameScore">0</a> points
+	<br/>
+	<br/>
+	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
+			Click to send me feedback on my second project</a>
+	  </p>
+		
+	
 			
