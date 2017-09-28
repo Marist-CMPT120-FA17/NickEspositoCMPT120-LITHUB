@@ -23,72 +23,77 @@
 	</head>
 	<body>
 		<div class = "thick blue double">You will be exploring<br/><p id = "p1">The Nightlife at Marist</p>
+		<img src="https://s3-us-west-2.amazonaws.com/asset.plexuss.com/college/logos/Marist_College.jpg" alt="Marist College Logo" style="width:150px;height:150px;"/>
 		<br/>
 		<br/>
-		<textarea readonly id="textbook" name="textbox" rows="20" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
+		<textarea readonly id="textbox" name="textbox" rows="10" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
 		</textarea>
-		<br/>
-		<br/>
+	<br/>
+	<br/>
 	<!-- This begins the javascript section -->
 	<!-- First javascript for functions, read throughly -->
-	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens -->
-	<!-- These are the event handlers for each button -->
+	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens. I had to rework the script a few times and
+	added in if else statements so the score would properly work -->
 	<script type = "text/javascript">
+	var North = false
+	var South = false
+	var East = false
+	var West = false 
 	var score = 0
-	var headNorth = false
-	var headSouth = false
-	var headEast = false
-	var headWest = false 
+	//Textbox for var message for each button, added this as a function so the script would look cleaner
+		function displayText(message) {
+				var textarea = document.getElementById("textbox");
+				textarea.value = message;
+			}
 	//NORTH
 		function btnNorth_click() {
-			if (headNorth == false) {
+			if (North == false) {
 			var message = "Just North of campus is Darby O'Gills, a popular destination on Friday nights for students. It is usually dead before 11 P.M, but after that, the club is packed until 2 A.M!";
-			document.getElementById("textbox").innerHTML = message;
+			displayText(message);
 			North = true;
-			score = score + 5;
-			document.getElementById(score) = score;
+			score += 5;
+			document.getElementById("score").innerHTML = score;
 			} else {
 			var message = "Just North of campus is Darby O'Gills, a popular destination on Friday nights for students. It is usually dead before 11 P.M, but after that, the club is packed until 2 A.M!";
-			document.getElementById("textbox"); }
+			displayText(message); }
 			}
 	//SOUTH
 		function btnSouth_click() {
-			if (headSouth == false) {
+			if (South == false) {
 			var message = "Mahoney's is senior exclusive bar, and 99% of time, you will be denied if you have a form of fake government documentation. Once you turn 21, Mahoney's is where you go to celebrate!";
-			document.getElementById("textbox").innerHTML = message;
+			displayText(message);
 			South = true;
-			score = score + 5;
-			document.getElementById("score") = score
+			score += 5;
+			document.getElementById("score").innerHTML = score;
 			} else {
 			var message = "Mahoney's is senior exclusive bar, and 99% of time, you will be denied if you have a form of fake government documentation. Once you turn 21, Mahoney's is where you go to celebrate!";
-			document.getElementById("textbox"); }
+			displayText(message); }
 			}
 	//EAST
 		function btnEast_click() {
-			if (headEast == false) {
+			if (East == false) {
 			var message = "Just off of Main Street in Pughkeepsie is the legendary bar Union. It is popular on Saturday and Tuesday nights, and they will let anyone in who wants to have a good time.";
-			document.getElementById("textbox").innerHTML = message;
+			displayText(message);
 			East = true;
-			score = score + 5;
-			document.getElementById("score") = score
+			score += 5;
+			document.getElementById("score").innerHTML = score;
 			} else {
 			var message = "Just off of Main Street in Pughkeepsie is the legendary bar Union. It is popular on Saturday and Tuesday nights, and they will let anyone in who wants to have a good time.";
-			document.getElementById("textbox"); }
+			displayText(message); }
 			}
 	//WEST
 		function btnWest_click() {
-			if (headWest == false) {
+			if (West == false) {
 			var message = "Just a few steps from Mahoney's is River Station, known as River on campus. It is poular on Thursday nights and usually has a laid back vibe. Always a good time when you bring a group of friends.";
-			document.getElementById("textbox").innerHTML = message;
-			Westst = true;
-			score = score + 5;
-			document.getElementById("score") = score
+			displayText(message);
+			West = true;
+			score += 5;
+			document.getElementById("score").innerHTML = score;
 			} else {
 			var message = "Just a few steps from Mahoney's is River Station, known as River on campus. It is poular on Thursday nights and usually has a laid back vibe. Always a good time when you bring a group of friends.";
-			document.getElementById("textbox"); }
+			displayText(message); }
 			}
 	</script>
-	<br/>
 		<!--Buttons are now being created, and they will call the functions via the onclick value, which also add 5 points to score -->
 		<input type="button" value="North" onclick="btnNorth_click()" id="btnNorth"/><br/><br/>
 		<input type="button" value="South" onclick="btnSouth_click()" id="btnSouth"/><br/><br/>
@@ -99,8 +104,9 @@
 	<br/>
 	<br/>
 	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
-			Click to send me feedback on my second project, Game v0.2</a><br/>Copyright™ Nick Esposito 2017
+			Click to send me feedback on my second project, Game v0.2</a><br/><br/>Created and Developed by Nick Esposito 2017
 	 </p>
+	 <p><strong>Note: This game is not affiliated with Marist College</strong></p>
 	</div>
 	</body>
 </html>
