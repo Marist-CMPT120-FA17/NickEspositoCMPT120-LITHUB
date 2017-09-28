@@ -5,7 +5,7 @@
 <!--September 28th, 2017-->
 	<head>
 		<meta charset="utf-8">
-		<title>Escape Hancock!</title>
+		<title>The Nightlife at Marist</title>
 		<!-- Borders and Style CSS Section -->
 		<!-- See Chapter 4 in Textbook for borders -->
 		<style type = "text/css">
@@ -17,14 +17,14 @@
 			.thick	{ border-width: thick;	}
 			.double	{ border-style: double; }
 			.blue   { border-color: blue;   }
-			#p1{font-weight: bold; color: cadetblue; font-size: 24pt}
+			#p1{font-weight: bold; color: red; font-size: 24pt}
 		</style>
 	</head>
 	<body>
-		<div class = "thick blue double">You are now playing </br><p id = "p1">Escape Hancock</p>
+		<div class = "thick blue double">You will be exploring<br/><p id = "p1">The Nightlife at Marist</p>
 		<br/>
 		<br/>
-		<textarea readonly id="message" name="message" rows="20" cols="40">You are stuck on the top floor of the Hancock Center at Marist and freshman have overrun the building. You must find your way out of the building! You are in the Computer Science Office and you can only leave through the main entrence on the first floor.
+		<textarea readonly id="message" name="message" rows="20" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
 		</textarea>
 		<br/>
 		<br/>
@@ -35,40 +35,40 @@
 	<script type = "text/javascript">
 	//NORTH
 		function btnNorth_click() {
-			document.getElementById("message").value = "Well, Well, Well. You're traveling down the staircase to the second floor. Nice job, but now the power is flickering, so move faster!";
+			document.getElementById("message").value = "Just North of campus is Darby O'Gills, a popular destination on Friday nights for students. It is usually dead before 11 P.M, but after that, the club is packed until 2 A.M!";
 			}
 	//SOUTH
 		function btnSouth_click() {
-			document.getElementById("message").value = "Shit! There's a mob of angry freshman chasing you now! Quick, run the other way NOW!";
+			document.getElementById("message").value = "Mahoney's is senior exclusive bar, and 99% of time, you will be denied if you have a form of fake government documentation. Once you turn 21, Mahoney's is where you go to celebrate!";
 			}
 	//EAST
 		function btnEast_click() {
-			document.getElementById("message").value = "Whoa. You just avoided the angry mob of freshman. Keep runnning down the hall, you're just passing the investment center now!";
+			document.getElementById("message").value = "Just off of Main Street in Pughkeepsie is the legendary bar Union. It is popular on Saturday and Tuesday nights, and they will let anyone in who wants to have a good time.";
 			}	
 	//WEST
 		function btnWest_click() {
-			document.getElementById("message").value = "YES THE DOORS! YOU RAN SO FAST YOU BYPASSED ALL THE FRESHMAN! YOU SEE THE ROAD AND RUN OUTSIDE! YOU HAVE SUCESSFULLY ESCAPED WOOHOO!";
+			document.getElementById("message").value = "Just a few steps from Mahoney's is River Station, known as River on campus. It is poular on Thursday nights and usually has a laid back vibe. Always a good time when you bring a group of friends.";
 			}
 	//SCORE, adds 5 points the first time the button is clicked; max is 20 points
 		var score = 0;
-		function points() {
+		function points() 		{
 			score += 5;
         document.getElementById("gameScore").innerHTML = score;
-    	}
+			}
 	</script>
 	<br/>
 		<!--Buttons are now being created, and they will call the functions via the onclick value, which also add 5 points to score -->
-		<input type="button" value="North" onclick="btnNorth_click(); points();this.onclick=null" id="btnNorth" value="North"/><br/><br/>
-		<input type="button" value="South" onclick="btnSouth_click(); points();this.onclick=null" id="btnSouth" value="South"/><br/><br/>
-		<input type="button" value="East" onclick="btnEast_click(); points();this.onclick=null" id="btnEast" value="East"/><br/><br/>
-		<input type="button" value="West" onclick="btnWest_click(); points();this.onclick=null" id="btnWest" value="West"/><br/><br/>
+		<input type="button" value="North" onclick="btnNorth_click(); points();this.onclick=null" id="btnNorth"/><br/><br/>
+		<input type="button" value="South" onclick="btnSouth_click(); points();this.onclick=null" id="btnSouth"/><br/><br/>
+		<input type="button" value="East" onclick="btnEast_click(); points();this.onclick=null" id="btnEast"/><br/><br/>
+		<input type="button" value="West" onclick="btnWest_click(); points();this.onclick=null" id="btnWest"/><br/><br/>
 	
 	<em>Score:</em> <a id="gameScore">0</a> points
 	<br/>
 	<br/>
 	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
-			Click to send me feedback on my second project</a>
-	  </p>
-		
-	
-			
+			Click to send me feedback on my second project, Game v0.2</a><br/>Copyright™ Nick Esposito 2017
+	 </p>
+	</div>
+	</body>
+</html>
