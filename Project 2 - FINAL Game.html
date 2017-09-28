@@ -3,6 +3,7 @@
 <!--Nick Esposito-->
 <!--Project #2-->
 <!--September 28th, 2017-->
+<!-- This project uses HTML, Javascript, and CSS langauges-->
 	<head>
 		<meta charset="utf-8">
 		<title>The Nightlife at Marist</title>
@@ -24,7 +25,7 @@
 		<div class = "thick blue double">You will be exploring<br/><p id = "p1">The Nightlife at Marist</p>
 		<br/>
 		<br/>
-		<textarea readonly id="message" name="message" rows="20" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
+		<textarea readonly id="textbook" name="textbox" rows="20" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
 		</textarea>
 		<br/>
 		<br/>
@@ -33,37 +34,68 @@
 	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens -->
 	<!-- These are the event handlers for each button -->
 	<script type = "text/javascript">
+	var score = 0
+	var headNorth = false
+	var headSouth = false
+	var headEast = false
+	var headWest = false 
 	//NORTH
 		function btnNorth_click() {
-			document.getElementById("message").value = "Just North of campus is Darby O'Gills, a popular destination on Friday nights for students. It is usually dead before 11 P.M, but after that, the club is packed until 2 A.M!";
+			if (headNorth == false) {
+			var message = "Just North of campus is Darby O'Gills, a popular destination on Friday nights for students. It is usually dead before 11 P.M, but after that, the club is packed until 2 A.M!";
+			document.getElementById("textbox").innerHTML = message;
+			North = true;
+			score = score + 5;
+			document.getElementById(score) = score;
+			} else {
+			var message = "Just North of campus is Darby O'Gills, a popular destination on Friday nights for students. It is usually dead before 11 P.M, but after that, the club is packed until 2 A.M!";
+			document.getElementById("textbox"); }
 			}
 	//SOUTH
 		function btnSouth_click() {
-			document.getElementById("message").value = "Mahoney's is senior exclusive bar, and 99% of time, you will be denied if you have a form of fake government documentation. Once you turn 21, Mahoney's is where you go to celebrate!";
+			if (headSouth == false) {
+			var message = "Mahoney's is senior exclusive bar, and 99% of time, you will be denied if you have a form of fake government documentation. Once you turn 21, Mahoney's is where you go to celebrate!";
+			document.getElementById("textbox").innerHTML = message;
+			South = true;
+			score = score + 5;
+			document.getElementById("score") = score
+			} else {
+			var message = "Mahoney's is senior exclusive bar, and 99% of time, you will be denied if you have a form of fake government documentation. Once you turn 21, Mahoney's is where you go to celebrate!";
+			document.getElementById("textbox"); }
 			}
 	//EAST
 		function btnEast_click() {
-			document.getElementById("message").value = "Just off of Main Street in Pughkeepsie is the legendary bar Union. It is popular on Saturday and Tuesday nights, and they will let anyone in who wants to have a good time.";
-			}	
+			if (headEast == false) {
+			var message = "Just off of Main Street in Pughkeepsie is the legendary bar Union. It is popular on Saturday and Tuesday nights, and they will let anyone in who wants to have a good time.";
+			document.getElementById("textbox").innerHTML = message;
+			East = true;
+			score = score + 5;
+			document.getElementById("score") = score
+			} else {
+			var message = "Just off of Main Street in Pughkeepsie is the legendary bar Union. It is popular on Saturday and Tuesday nights, and they will let anyone in who wants to have a good time.";
+			document.getElementById("textbox"); }
+			}
 	//WEST
 		function btnWest_click() {
-			document.getElementById("message").value = "Just a few steps from Mahoney's is River Station, known as River on campus. It is poular on Thursday nights and usually has a laid back vibe. Always a good time when you bring a group of friends.";
-			}
-	//SCORE, adds 5 points the first time the button is clicked; max is 20 points
-		var score = 0;
-		function points() 		{
-			score += 5;
-        document.getElementById("gameScore").innerHTML = score;
+			if (headWest == false) {
+			var message = "Just a few steps from Mahoney's is River Station, known as River on campus. It is poular on Thursday nights and usually has a laid back vibe. Always a good time when you bring a group of friends.";
+			document.getElementById("textbox").innerHTML = message;
+			Westst = true;
+			score = score + 5;
+			document.getElementById("score") = score
+			} else {
+			var message = "Just a few steps from Mahoney's is River Station, known as River on campus. It is poular on Thursday nights and usually has a laid back vibe. Always a good time when you bring a group of friends.";
+			document.getElementById("textbox"); }
 			}
 	</script>
 	<br/>
 		<!--Buttons are now being created, and they will call the functions via the onclick value, which also add 5 points to score -->
-		<input type="button" value="North" onclick="btnNorth_click(); points();this.onclick=null" id="btnNorth"/><br/><br/>
-		<input type="button" value="South" onclick="btnSouth_click(); points();this.onclick=null" id="btnSouth"/><br/><br/>
-		<input type="button" value="East" onclick="btnEast_click(); points();this.onclick=null" id="btnEast"/><br/><br/>
-		<input type="button" value="West" onclick="btnWest_click(); points();this.onclick=null" id="btnWest"/><br/><br/>
+		<input type="button" value="North" onclick="btnNorth_click()" id="btnNorth"/><br/><br/>
+		<input type="button" value="South" onclick="btnSouth_click()" id="btnSouth"/><br/><br/>
+		<input type="button" value="East" onclick="btnEast_click()" id="btnEast"/><br/><br/>
+		<input type="button" value="West" onclick="btnWest_click()" id="btnWest"/><br/><br/>
 	
-	<em>Score:</em> <a id="gameScore">0</a> points
+	<em>Score:</em> <a id="score">0</a> points
 	<br/>
 	<br/>
 	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
