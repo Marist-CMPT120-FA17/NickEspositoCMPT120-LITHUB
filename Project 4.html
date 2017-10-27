@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<!--Nick Esposito-->
+<!--Project #3-->
+<!--Ocotber 19th, 2017-->
+<!-- This project uses HTML, Javascript, and CSS langauges-->
+	<head>
+		<meta charset="utf-8">
+		<title>The Nightlife at Marist</title>
+		<!-- Borders and Style CSS Section -->
+		<!-- See Chapter 4 in Textbook for borders -->
+		<style type = "text/css">
+			div	{ text-align: center;
+				  width: 50%;
+				  position: relative;
+				  left: 25%;
+				  border-width: 10px; }
+			.thick	{ border-width: thick;	}
+			.double	{ border-style: double; }
+			.blue   { border-color: blue;   }
+			#p1{font-weight: bold; color: red; font-size: 24pt}
+		</style>
+	</head>
+	<body>
+		<div class = "thick blue double">You will be exploring<br/><p id = "p1">The Nightlife at Marist</p>
+		<img src="https://s3-us-west-2.amazonaws.com/asset.plexuss.com/college/logos/Marist_College.jpg" alt="Marist College Logo" style="width:150px;height:150px;"/>
+		<br/>
+		<br/>
+		<textarea readonly id="textarea" name="textarea" rows="10" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
+		</textarea>
+	<br/>
+	<br/>
+	<!-- This begins the javascript section -->
+	<!-- First javascript for functions, read throughly -->
+	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens. I had to rework the script a few times and
+	added in if else statements so the score would properly work -->
+	<!-- Update Game v0.4-Including switch-case, streamlined code from version 0.2 -->
+	<script type = "text/javascript">
+	//Global variables
+	var score = 0;
+    var currentLoc = 0;
+   //Variables for score
+    var VisitLoc0 = false;
+    var VisitLoc1 = false;
+    var VisitLoc2 = false;
+    var VisitLoc3 = false;
+    var VisitLoc4 = false;
+    var VisitLoc5 = false;
+    //Starts look()
+	function init() {
+            look();
+        }
+    //Command Box
+	   function btnEnterCommands_click() {
+        var userText = document.getElementById("textinput").value;
+        var response = "";
+            if (userText === "n") {
+                response = btnNorth_click();
+            } else {
+            if (userText === "s") {
+				response = btnSouth_click();
+            } else {
+            if (userText === "e") {
+				response = btnEast_click();
+            } else {
+            if (userText === "w") {
+				response = btnWest_click();
+            } else {
+            if (userText === "N") {
+				response = btnNorth_click();
+			} else {
+			if (userText === "S") {
+				response = btnSouth_click();
+			} else {
+			if (userText === "E") {
+				response = btnEast_click();
+			} else {
+			if (userText === "W") {
+				response = btnWest_click();
+			} else {
+			var textarea = document.getElementById("textarea");
+			textarea.value = "Invalid direction. Please try again! Valid commands are N, n (north), S, s (south), E, e (east), and W, w (west).";
+			}}}}}}}}}
+	//NORTH
+		function btnNorth_click() {
+			  if (currentLoc === 0) {
+               currentLoc = 1;
+				look();
+            } else {
+              if (currentLoc === 1) {
+                 currentLoc = 5; 
+				look();
+              } else {
+				if (currentLoc === 2)	{
+					currentLoc = 0;
+					look();
+				}
+			}
+			}}
+	//SOUTH
+		function btnSouth_click() {
+			  if (currentLoc === 0) {
+               currentLoc = 2; 
+				look();
+            } else {
+              if (currentLoc === 5) {
+                 currentLoc = 1; 
+					look();
+              } else {
+				if (currentLoc === 1)	{
+					currentLoc = 0;
+					look();
+				}
+			}
+			}}
+	//EAST
+		function btnEast_click() {
+		 if (currentLoc === 0) {
+               currentLoc = 3;
+			   look();
+            } 
+			  else {
+				if (currentLoc === 4) {
+                 currentLoc = 0;
+				 look();
+              }
+            }
+			}
+	//WEST
+		function btnWest_click() {
+		 if (currentLoc === 0) {
+               currentLoc = 4;
+			   look();
+            } 
+			  else {
+				if (currentLoc === 3) {
+                 currentLoc = 0;
+				 look();
+              }
+            }
+         }
+	//look() descriptions featuring switch-case
+		function look()	{	
+			var desc = "";
+			switch(currentLoc)	{
+				case 0: desc = "first locations";
+					break;
+				case 1: desc = "You all just walked outside, waiting for JOE (dank taxi driver) to arrive."
+					break;
+				case 2: desc = "You are now at Mahoney's, but you probably cannot get in because it is a senior bar."
+					break;
+				case 3: desc = "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar!"
+					break;
+				case 4: desc = "You now go to River Station, where I will be after class after this project is due :)."
+					break;
+				case 5: desc = "You finally hailed JOE again, and he takes you back to Upper New, concluding your night."
+					break;
+				default: "Invalid move, try again."
+			}
+			ScoreTime();
+			ButtonTime();
+			desc = desc 
+            UpdateDisplay(desc);
+			}
+	//Enabling and Disabling buttons
+		function ButtonTime() { 
+		if (currentLoc === 0) {
+			document.getElementById("btnEast").disabled = false;
+            document.getElementById("btnWest").disabled = false;
+            document.getElementById("btnSouth").disabled = false;
+            document.getElementById("btnNorth").disabled = false;
+		} else {
+		if (currentLoc === 1) {
+			document.getElementById("btnEast").disabled = true;
+            document.getElementById("btnWest").disabled = true;
+            document.getElementById("btnSouth").disabled = false;
+            document.getElementById("btnNorth").disabled = false;
+		} else {
+		if (currentLoc === 2) {
+			document.getElementById("btnEast").disabled = true;
+            document.getElementById("btnWest").disabled = true;
+            document.getElementById("btnSouth").disabled = true;
+            document.getElementById("btnNorth").disabled = false;
+		} else {
+		if (currentLoc === 3) {
+			document.getElementById("btnEast").disabled = true;
+            document.getElementById("btnWest").disabled = false;
+            document.getElementById("btnSouth").disabled = true;
+            document.getElementById("btnNorth").disabled = true;
+		} else {
+		if (currentLoc === 4) {
+			document.getElementById("btnEast").disabled = false;
+			document.getElementById("btnWest").disabled = true;
+			document.getElementById("btnSouth").disabled = true;
+            document.getElementById("btnNorth").disabled = true;
+        } else {
+		if (currentLoc === 5) {
+			document.getElementById("btnEast").disabled = true;
+            document.getElementById("btnWest").disabled = true;
+            document.getElementById("btnSouth").disabled = false;
+            document.getElementById("btnNorth").disabled = true;
+		}}}}}}
+		}
+		
+	//Score function
+		function ScoreTime() {
+			if ((! VisitLoc0) && (currentLoc === 0)) {
+			score += 5;
+			document.getElementById("score").innerHTML = score;	
+			VisitLoc0 = true; 
+			} else if ( (! VisitLoc1) && (currentLoc === 1) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;	
+			VisitLoc1 = true;
+			} else if ( (! VisitLoc2) && (currentLoc === 2) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc2 = true;
+			} else if ( (! VisitLoc3) && (currentLoc === 3) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score ;
+			VisitLoc3 = true;
+			} else if ( (! VisitLoc4) && (currentLoc === 4) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc4 = true;
+			} else if ( (! VisitLoc5) && (currentLoc === 5) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc5 = true;
+			}
+			}
+	//Textarea for var message for each button, coming from each locations function
+        function UpdateDisplay(MSGTA) {
+            var textarea = document.getElementById("textarea");
+            textarea.value = MSGTA + "\n\n" ;
+        }
+	</script>
+	<!--Buttons are now being created, and they will call the functions -->
+		<input type="button" value="North" onclick= "btnNorth_click()" id="btnNorth"/>
+		<input type="button" value="South" onclick="btnSouth_click()" id="btnSouth"/><br/><br/>
+		<input type="button" value="East" onclick="btnEast_click()" id="btnEast"/>
+		<input type="button" value="West" onclick="btnWest_click()" id="btnWest"/><br/><br/>
+		<input type="text" name="textinput" id="textinput" value="Enter Directions"/>
+		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()"/><br/><br/>
+	
+	<em>Score:</em> <a id="score">0</a> points
+	<br/>
+	<br/>
+	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
+			Click to send me feedback on my third project, Game v0.4</a><br/><br/>Created and Developed by Nick Esposito 2017
+	 </p>
+	 <p><strong>Note: This game is not affiliated with Marist College</strong></p>
+	</div>
+	</body>
+</html>
