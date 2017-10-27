@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<!--Nick Esposito-->
+<!--Project #3-->
+<!--Ocotber 19th, 2017-->
+<!-- This project uses HTML, Javascript, and CSS langauges-->
+	<head>
+		<meta charset="utf-8">
+		<title>The Nightlife at Marist</title>
+		<!-- Borders and Style CSS Section -->
+		<!-- See Chapter 4 in Textbook for borders -->
+		<style type = "text/css">
+			div	{ text-align: center;
+				  width: 50%;
+				  position: relative;
+				  left: 25%;
+				  border-width: 10px; }
+			.thick	{ border-width: thick;	}
+			.double	{ border-style: double; }
+			.blue   { border-color: blue;   }
+			#p1{font-weight: bold; color: red; font-size: 24pt}
+		</style>
+	</head>
+	<body>
+		<div class = "thick blue double">You will be exploring<br/><p id = "p1">The Nightlife at Marist</p>
+		<img src="https://s3-us-west-2.amazonaws.com/asset.plexuss.com/college/logos/Marist_College.jpg" alt="Marist College Logo" style="width:150px;height:150px;"/>
+		<br/>
+		<br/>
+		<textarea readonly id="textarea" name="textarea" rows="10" cols="40">It is Friday night, and all of your friends want to go out, but where do you go? This game will let explore the best nightlife spots Marist has to offer!
+		</textarea>
+	<br/>
+	<br/>
+	<!-- This begins the javascript section -->
+	<!-- First javascript for functions, read throughly -->
+	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens. I had to rework the script a few times and
+	added in if else statements so the score would properly work -->
+	<!-- Update Game v0.4-Including switch-case, streamlined code from version 0.2 -->
+	<script type = "text/javascript">
+	//Global variables
+	var score = 0;
+    var currentLoc = 0;
+   //Variables for score
+    var VisitLoc0 = 0;
+    var VisitLoc1 = 0;
+    var VisitLoc2 = 0;
+    var VisitLoc3 = 0;
+    var VisitLoc4 = 0;
+    var VisitLoc5 = 0;
+    //Starts look()
+	function init() {
+            look();
+        }
+    //Command Box
+	   function btnEnterCommands_click() {
+        var userText = document.getElementById("textinput").value;
+        var response = "";
+            if (userText === "n") {
+                response = btnNorth_click();
+            } else {
+                if (userText === "s") {
+                    response = btnSouth_click();
+                } else {
+                    if (userText === "e") {
+                        response = btnEast_click();
+                    } else {
+                        if (userText === "w") {
+                            response = btnWest_click();
+                        } else {
+                          if (userText === "N") {
+							response = btnNorth_click();
+							} else {
+								if (userText === "S") {
+									response = btnSouth_click();
+								} else {
+									if (userText === "E") {
+										response = btnEast_click();
+									} else {
+										if (userText === "W") {
+											response = btnWest_click();
+										} else {
+										var textarea = document.getElementById("textarea");
+										textarea.value = "Invalid direction. Please try again! Valid commands are N, n (north), S, s (south), E, e (east), and W, w (west).";
+		}}}}}}}}}
+	//Functions for N,S,E,W
+		function beginning() {
+			var message = "You are at Donnelly Hall hailing a cab, see where that takes you!";
+			UpdateDisplay(message);
+			if (VisitLoc0 ==0) {
+				score +=5;
+				document.getElementById("score").innerHTML = score;
+				VisitLoc0 = 1;
+				} else {
+				var message = "You are at Donnelly Hall hailing a cab, see where that takes you!";
+				UpdateDisplay(message);
+				}
+		}
+		function northBtnone ()	{
+			var message = "You're outisde at Upper New, go to another bar now or stay in for the night!";
+			UpdateDisplay(message);
+			 if (VisitLoc1 == 0) {
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                    VisitLoc1 = 1;
+                } else {
+                    var message = "You're outisde at Upper New, go to another bar now or stay in for the night!";
+					UpdateDisplay(message);
+				}
+		}
+		function northBtntwo ()	{
+			var message = "You guys arrive at Darby O'Gills, and the place is packed beacuse its 2 for $1 night!";
+			UpdateDisplay(message);
+			 if (VisitLoc5 == 0) {
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                    VisitLoc5 = 1;
+                } else {
+                    var message = "You guys arrive at Darby O'Gills, and the place is packed beacuse its 2 for $1 night!";
+					UpdateDisplay(message);
+				}
+		}
+		function southBtn ()	{
+			var message = "You are now at Mahoney's, but you probably cannot get in because it is a senior bar.";
+			UpdateDisplay(message);
+			 if (VisitLoc2 == 0) {
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                    VisitLoc2 = 1;
+                } else {
+					var message = "You are now at Mahoney's, but you probably cannot get in because it is a senior bar.";
+					UpdateDisplay(message); 
+				}
+		}
+		function eastBtn ()	{
+			var message = "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.";
+			UpdateDisplay(message);
+			 if (VisitLoc3 == 0) {
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                    VisitLoc3 = 1;
+                } else {
+					var message = "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.";
+					UpdateDisplay(message);
+				}
+		}
+		function westBtn ()	{
+			var message = "You now go to River Station, and you all get in, have fun!"
+			UpdateDisplay(message);
+			 if (VisitLoc4 == 0) {
+                    score += 5;
+                    document.getElementById("score").innerHTML = score;
+                    VisitLoc4 = 1;
+                } else {
+                var message = "You now go to River Station, and you all get in, have fun!"
+				UpdateDisplay(message);
+				}
+		}
+	//Buttons for directions
+	//NORTH
+        function btnNorth_click() {
+            if (currentLoc === 0) {
+                currentLoc = 1;
+                look();
+                document.getElementById("btnEast").disabled = true;
+                document.getElementById("btnWest").disabled = true;
+                document.getElementById("btnSouth").disabled = false;
+                document.getElementById("btnNorth").disabled = false;
+            } else {
+                if (currentLoc === 1) {
+                    currentLoc = 5;
+                    look();
+                    document.getElementById("btnEast").disabled = true;
+                    document.getElementById("btnWest").disabled = true;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = true;
+                } else {
+                    if (currentLoc === 2) {
+                        currentLoc = 0;
+                        look();
+                        document.getElementById("btnEast").disabled = false;
+                        document.getElementById("btnWest").disabled = false;
+                        document.getElementById("btnSouth").disabled = false;
+                        document.getElementById("btnNorth").disabled = false;
+                    }
+                }
+            }
+            look();
+        }
+    //SOUTH
+        function btnSouth_click() {
+            if (currentLoc === 0) {
+                currentLoc = 2;
+                look();
+                document.getElementById("btnEast").disabled = true;
+                document.getElementById("btnWest").disabled = true;
+                document.getElementById("btnSouth").disabled = true;
+                document.getElementById("btnNorth").disabled = false;
+            } else {
+                if (currentLoc === 5) {
+                    currentLoc = 1;
+                    look();
+                    document.getElementById("btnEast").disabled = true;
+                    document.getElementById("btnWest").disabled = true;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = false;
+                } else {
+                    if (currentLoc === 1) {
+                        currentLoc = 0;
+                        look();
+                        document.getElementById("btnEast").disabled = false;
+                        document.getElementById("btnWest").disabled = false;
+                        document.getElementById("btnSouth").disabled = false;
+                        document.getElementById("btnNorth").disabled = false;
+                    }
+                }
+            }
+            look();
+        }
+    //EAST
+        function btnEast_click() {
+            if (currentLoc === 0) {
+                currentLoc = 3;
+                look();
+                document.getElementById("btnEast").disabled = true;
+                document.getElementById("btnWest").disabled = false;
+                document.getElementById("btnSouth").disabled = true;
+                document.getElementById("btnNorth").disabled = true;
+            } else {
+                if (currentLoc === 4) {
+                    currentLoc = 0;
+                    look();
+                    document.getElementById("btnEast").disabled = false;
+                    document.getElementById("btnWest").disabled = false;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = false;
+				}
+            }
+            look();
+        }
+    //WEST
+        function btnWest_click() {
+            if (currentLoc === 0) {
+                currentLoc = 4;
+                look();
+                document.getElementById("btnEast").disabled = false;
+                document.getElementById("btnWest").disabled = true;
+                document.getElementById("btnSouth").disabled = true;
+                document.getElementById("btnNorth").disabled = true;
+            } else {
+                if (currentLoc === 3) {
+                    currentLoc = 0;
+                    look();
+                    document.getElementById("btnEast").disabled = false;
+                    document.getElementById("btnWest").disabled = false;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = false;
+                
+                }
+            }
+            look();
+        }
+    //look() descriptions featuring switch-case    
+		function look() {
+            var desc = "";
+            switch (currentLoc) {
+                case 0: beginning();
+					break;
+				case 1: northBtnone();
+					break;
+				case 2: southBtn();
+					break;
+				case 3: eastBtn();
+					break;
+				case 4: westBtn();
+					break;
+				case 5: northBtntwo();
+					break;
+				default: "Invalid move, try again."
+            }
+        }
+	//Textarea for var message for each button, coming from each locations function
+        function UpdateDisplay(MSGTA) {
+            var textarea = document.getElementById("textarea");
+            textarea.value = MSGTA;
+        }
+	</script>
+	<!--Buttons are now being created, and they will call the functions -->
+		<input type="button" value="North" onclick= "btnNorth_click();" id="btnNorth"/>
+		<input type="button" value="South" onclick="btnSouth_click();" id="btnSouth"/><br/><br/>
+		<input type="button" value="East" onclick="btnEast_click();" id="btnEast"/>
+		<input type="button" value="West" onclick="btnWest_click();" id="btnWest"/><br/><br/>
+		<input type="text" name="textinput" id="textinput" value="Enter Directions"/>
+		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()"/><br/><br/>
+	
+	<em>Score:</em> <a id="score">0</a> points
+	<br/>
+	<br/>
+	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
+			Click to send me feedback on my third project, Game v0.4</a><br/><br/>Created and Developed by Nick Esposito 2017
+	 </p>
+	 <p><strong>Note: This game is not affiliated with Marist College</strong></p>
+	</div>
+	</body>
+</html>
