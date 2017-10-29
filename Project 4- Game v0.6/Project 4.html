@@ -17,8 +17,8 @@
 				  left: 25%;
 				  border-width: 10px; }
 			div { text-align: center; 
-				font-family: Lucida, sans-serif; 
-				text-decoration: underline; }
+				font-family: tahoma, sans-serif; 
+				text-wright: bold, color: deepskyblue; }
 			.thick	{ border-width: thick;	}
 			.double	{ border-style: double; }
 			.blue   { border-color: blue;   }
@@ -34,7 +34,7 @@
 		</textarea>
 	<br/>
 	<br/>
-	<div id="gameMessages"></div>
+	<div id="gameMessages"></div><br/>
 	<!-- This begins the javascript section -->
 	<!-- First javascript for functions, read throughly -->
 	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens. I had to rework the script a few times and
@@ -48,6 +48,7 @@
 		<input type="text" name="textinput" id="textinput" value="Enter Directions"/>
 		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()"/><br/><br/>
 		<input type="button" value="Take Item" onclick="take()" id="btnTake"/>
+		<input type="button" value="Check Inventory" onclick="checkInventory()" id="btnInventory"/><br/>
 	
 	<em>Score:</em> <a id="score">0</a> points
 	<br/>
@@ -150,11 +151,11 @@ var beer= true
 	 var message = "Item is now in your inventory!";
 	 if ((currentLoc === 5) && (beer)) {
 		 beer = false;
-		 userInventory.push("BEER");
+		 userInventory.push("[BEER]");
 		 gameMessage(message);
 	 } else if ((currentLoc === 6) && (pizza)) {
 		 pizza = false;
-		 userInventory.push("PIZZA");
+		 userInventory.push("[PIZZA]");
 		 gameMessage(message);
 	 }
  }
@@ -193,8 +194,8 @@ function checkInventory() {
             document.getElementById("btnNorth").disabled = false;
 		} else {
 		if (currentLoc === 2) {
-			document.getElementById("btnEast").disabled = true;
-            document.getElementById("btnWest").disabled = true;
+			document.getElementById("btnEast").disabled = false;
+            document.getElementById("btnWest").disabled = false;
             document.getElementById("btnSouth").disabled = true;
             document.getElementById("btnNorth").disabled = false;
 		} else {
