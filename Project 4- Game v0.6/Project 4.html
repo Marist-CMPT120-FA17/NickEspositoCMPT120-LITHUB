@@ -18,7 +18,7 @@
 				  border-width: 10px; }
 			div { text-align: center; 
 				font-family: arial, sans-serif; 
-				font-weight: bold; color: fuchsia;}
+				font-weight: bold; color: deepskyblue;}
 			.thick	{ border-width: thick;	}
 			.double	{ border-style: double; }
 			.blue   { border-color: blue;   }
@@ -48,7 +48,8 @@
 		<input type="text" name="textinput" id="textinput" value="Enter Directions"/>
 		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()"/><br/><br/>
 		<input type="button" value="Take Item" onclick="take()" id="btnTake"/>
-		<input type="button" value="Check Inventory" onclick="checkInventory()" id="btnInventory"/><br/>
+		<input type="button" value="Check Inventory" onclick="checkInventory()" id="btnInventory"/><br/><br/>
+		<center><input type="button" value="Need Help?" onclick="HelpTime()" id="btnHelp"/></center><br/>
 	
 	<em>Score:</em> <a id="score">0</a> points
 	<br/>
@@ -75,13 +76,42 @@ var VisitLoc6 = false;
 var VisitLoc7 = false;
 var VisitLoc8 = false;
 var VisitLoc9 = false;
- //Inventory System
+ //Inventory System- has an empty array, using the .push to add variables to this is best option for inventory
 var userInventory = []
  //This will be for collecting items! TAKE BUTTON!!!!
 var pizza = true
 var beer= true
  /////////////////////////////////////////
- //NORTH
+ //Command box
+ function btnEnterCommands_click() {
+    var message = "Invalid Command. Please try again! Valid commands are N, n (north), S, s (south), E, e (east), and W, w (west).";
+	var userText = document.getElementById("textinput").value;
+	if (userText === "N" || userText === "n") {
+		btnNorth_click();	
+	} else if (userText === "S" || userText ==="s"){
+		btnSouth_click();
+	} else if (userText === "E" || userText ==="e"){
+		btnEast_click();
+	} else if (userText === "W" || userText ==="w") {
+		btnWest_click();
+	} else if (userText === "T" || userText ==="t") {
+		take();
+	} else if (userText === "I" || userText ==="i") {
+		checkInventory();
+	} else if (userText === "H" || userText ==="h") {
+		HelpTime();							
+	} else {
+		UpdateDisplay(message);
+	}
+}
+//Help function for help button
+ function HelpTime() {
+	var message = "The follwing commands can be entered into the textbox:" +
+				  "N, n (north), S, s (south), E, e (east), and W, w (west)" +
+				  " I, i (check inventory), T, t (take item), H, h (need help?)!";
+	alert(message);
+	}
+//NORTH
  function btnNorth_click() {
 	 var message = "Invalid Movement. Try another Direction!";
 	 switch(currentLoc) {
@@ -270,5 +300,25 @@ function checkInventory() {
 			document.getElementById("score").innerHTML = score;
 			VisitLoc5 = true;
 			}
+			else if ( (! VisitLoc6) && (currentLoc === 6) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc6 = true;
 			}
+			else if ( (! VisitLoc7) && (currentLoc === 7) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc7 = true;
+			}
+			else if ( (! VisitLoc8) && (currentLoc === 8) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc8 = true;
+			}
+			else if ( (! VisitLoc9) && (currentLoc === 9) ) {            
+			score += 5;
+			document.getElementById("score").innerHTML = score;
+			VisitLoc9 = true;
+			}
+		}
 </script>
