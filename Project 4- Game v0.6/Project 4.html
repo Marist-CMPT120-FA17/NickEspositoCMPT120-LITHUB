@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>The Nightlife at Marist</title>
-		<script type = "text/javascript" src="locationsNE.js"></script>
+		<script type = "text/javascript" src="locations.js"></script>
 		<!-- Borders and Style CSS Section -->
 		<!-- See Chapter 4 in Textbook for borders -->
 		<style type = "text/css">
@@ -29,6 +29,9 @@
 		You will be exploring<br/><p id = "p1">The Nightlife at Marist</p>
 		<img src="https://s3-us-west-2.amazonaws.com/asset.plexuss.com/college/logos/Marist_College.jpg" alt="Marist College Logo" style="width:150px;height:150px;"/>
 		<br/>
+		<img src="gamemapNE.png" alt="Game Map" style="width:700px;height:375px;"/>
+		<br/>
+		<em>Score:</em> <a id="score">0</a> points
 		<br/>
 		<textarea readonly id="textarea" name="textarea" rows="10" cols="40">
 		</textarea>
@@ -50,12 +53,8 @@
 		<input type="button" value="Take Item" onclick="take()" id="btnTake"/>
 		<input type="button" value="Check Inventory" onclick="checkInventory()" id="btnInventory"/><br/><br/>
 		<center><input type="button" value="Need Help?" onclick="HelpTime()" id="btnHelp"/></center><br/>
-	
-	<em>Score:</em> <a id="score">0</a> points
-	<br/>
-	<br/>
 	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
-			Click to send me feedback on my third project, Game v0.4</a><br/><br/>Created and Developed by Nick Esposito 2017
+			Click to send me feedback on my fourth project, Game v0.6</a><br/><br/>Created and Developed by Nick Esposito 2017
 	 </p>
 	<center><p><strong>Note: This game is not affiliated with Marist College</strong></p></center>
 	</body>
@@ -107,14 +106,15 @@ var beer= true
 //Help function for help button
  function HelpTime() {
 	var message = "The follwing commands can be entered into the textbox:" +
-				  "N, n (north), S, s (south), E, e (east), and W, w (west)" +
+				  " N, n (north), S, s (south), E, e (east), and W, w (west)" +
 				  " I, i (check inventory), T, t (take item), H, h (need help?)!";
 	alert(message);
 	}
 //NORTH
  function btnNorth_click() {
-	 var message = "Invalid Movement. Try another Direction!";
-	 switch(currentLoc) {
+	ButtonTime();
+	var message = "Wrong Way. Try another Direction!";
+	switch(currentLoc) {
 		case 0: Darbys();
 		 break;
 		case 3: ClubTT();
@@ -123,13 +123,18 @@ var beer= true
 		 break;
 		case 2: UpperNew();
 		 break;
+		case 6: Union();
+		 break;
+		case 5: BillyBobs();
+		 break;
 		default: UpdateDisplay(message);
 	 }
  }
  //SOUTH
  function btnSouth_click() {
-	 var message = "Invalid Movement. Try another Direction!";
-	 switch(currentLoc) {
+	ButtonTime();
+	var message = "Wrong way. Try another Direction!";
+	switch(currentLoc) {
 		case 0: Donnelly();
 		 break;
 		case 5: Union();
@@ -138,14 +143,19 @@ var beer= true
 		 break;
 		case 1: UpperNew();
 		 break;
+		case 3: Gias();
+		 break;
+		case 8: ClubTT();
+		 break;
 		default: UpdateDisplay(message);
 	 }
  }
  //EAST
  function btnEast_click() {
-	 var message = "Invalid Movement. Try another Direction!";
-	 switch(currentLoc) {
-		case 1: BillyBobs();
+	ButtonTime();
+	var message = "Wrong way. Try another Direction!";
+	switch(currentLoc) {
+		case 1: ClubTT();
 		 break;
 		case 3: FratHouse();
 		 break;
@@ -155,14 +165,17 @@ var beer= true
 		 break;
 		case 2: Gias();
 		 break;
+		case 7: Donnelly();
+		 break;
 		default: UpdateDisplay(message);
 	 }
  }
  //WEST
  function btnWest_click() {
-	 var message = "Invalid Movement. Try another Direction!";
-	 switch(currentLoc) {
-		case 8: Darbys();
+	ButtonTime();
+	var message = "Wrong way. Try another Direction!";
+	switch(currentLoc) {
+		case 5: Darbys();
 		 break;
 		case 9: Union();
 		 break;
@@ -171,6 +184,8 @@ var beer= true
 		case 0: RiverStation();
 		 break;
 		case 6: Donnelly();
+		 break;
+		case 2: Amicis();
 		 break;
 		default: UpdateDisplay(message);
 	 }
@@ -210,69 +225,26 @@ function checkInventory() {
 }
 //
 //Enabling and Disabling buttons
-		function ButtonTime() { 
-		if (currentLoc === 0) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 1) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 2) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = true;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 3) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 4) {
-			document.getElementById("btnEast").disabled = false;
-			document.getElementById("btnWest").disabled = false;
-			document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-        } else {
-		if (currentLoc === 5) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 6) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 7) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 8) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		} else {
-		if (currentLoc === 9) {
-			document.getElementById("btnEast").disabled = false;
-            document.getElementById("btnWest").disabled = false;
-            document.getElementById("btnSouth").disabled = false;
-            document.getElementById("btnNorth").disabled = false;
-		}
-		}}}}}}}}}
-		}
+// Created via boolean function
+function ButtonTime() {
+	document.getElementById("btnEast").disabled = false;
+    document.getElementById("btnWest").disabled = false;
+    document.getElementById("btnSouth").disabled = false;
+    document.getElementById("btnNorth").disabled = false;
+	}
+function NoNoNorth() {
+	document.getElementById("btnNorth").disabled = true;
+	}
+function NoNoSouth() {
+	document.getElementById("btnSouth").disabled = true;
+	}
+function NoNoEast() {
+	document.getElementById("btnEast").disabled = true;
+	}
+function NoNoWest() {
+	document.getElementById("btnWest").disabled = true;
+	}
+////////////////
 	//Score function adapted from Alan's Game
 		function ScoreTime() {
 			if ((! VisitLoc0) && (currentLoc === 0)) {
