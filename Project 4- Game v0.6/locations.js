@@ -1,5 +1,8 @@
 //locations.js for Nick Esposito
-
+//Project 4
+//Game v0.6
+//November 2nd, 2017
+////////////////
 ////////////////
 ////////////////
 // 0
@@ -14,6 +17,7 @@ function UpperNew() {
 	UpdateDisplay(message); }
 	UpdateDisplay(message);
 	ScoreTime();
+	NoNoTake();
 }
 //1
 function Darbys() {
@@ -23,6 +27,7 @@ function Darbys() {
 	ScoreTime();
 	NoNoNorth();
 	NoNoWest();
+	NoNoTake();
 }
 //2
 function Donnelly() {
@@ -31,6 +36,7 @@ function Donnelly() {
 	UpdateDisplay(message);
 	ScoreTime();
 	NoNoSouth();
+	NoNoTake();
 }
 //3
 function Union() {
@@ -38,11 +44,12 @@ function Union() {
 	var message = "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.";
 	UpdateDisplay(message);
 	ScoreTime();
+	NoNoTake();
 }
 //4
 function RiverStation() {
 	currentLoc = 4;
-	var message = "You now go to River Station, and you all get in, have fun!";
+	var message = "You now go to River Station, and you found five dollars on the ground in line. TAKE it!";
 	UpdateDisplay(message);
 	ScoreTime();
 	NoNoNorth();
@@ -73,6 +80,7 @@ function Amicis() {
 	ScoreTime();
 	NoNoWest();
 	NoNoSouth();
+	NoNoTake();
 }
 //8
 function BillyBobs() {
@@ -83,6 +91,7 @@ function BillyBobs() {
 	NoNoNorth();
 	NoNoEast();
 	NoNoWest();
+	NoNoTake();
 }
 //9
 function FratHouse() {
@@ -93,11 +102,6 @@ function FratHouse() {
 	NoNoNorth();
 	NoNoSouth();
 	NoNoEast();
+	NoNoTake();
 }
 //End of Locations Game v0.6
-	
-	
-	
-	
-	
-	

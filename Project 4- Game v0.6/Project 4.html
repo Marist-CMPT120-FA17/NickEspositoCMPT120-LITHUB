@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <!--Nick Esposito-->
-<!--Project #3-->
-<!--Ocotber 19th, 2017-->
+<!--Project #4-->
+<!--November 2nd, 2017-->
 <!-- This project uses HTML, Javascript, and CSS langauges-->
 	<head>
 		<meta charset="utf-8">
@@ -18,11 +18,12 @@
 				  border-width: 10px; }
 			div { text-align: center; 
 				font-family: arial, sans-serif; 
-				font-weight: bold; color: deepskyblue;}
+				font-weight: bold; color: black;}
 			.thick	{ border-width: thick;	}
 			.double	{ border-style: double; }
 			.blue   { border-color: blue;   }
 			#p1{font-weight: bold; color: red; font-size: 24pt}
+			#p2 { text-align: center;}
 		</style>
 	</head>
 	<body onload="UpperNew();" class = "thick blue double">
@@ -38,29 +39,23 @@
 	<br/>
 	<br/>
 	<div id="gameMessages"></div><br/>
-	<!-- This begins the javascript section -->
-	<!-- First javascript for functions, read throughly -->
-	<!-- This SHOULD work, spent many hours reading textbook and googling, let's see what happens. I had to rework the script a few times and
-	added in if else statements so the score would properly work -->
-	<!-- Update Game v0.4-Including switch-case, streamlined code from version 0.2 -->
 	<!--Buttons are now being created, and they will call the functions -->
 		<input type="button" value="North" onclick= "btnNorth_click()" id="btnNorth"/>
 		<input type="button" value="South" onclick="btnSouth_click()" id="btnSouth"/><br/><br/>
 		<input type="button" value="East" onclick="btnEast_click()" id="btnEast"/>
 		<input type="button" value="West" onclick="btnWest_click()" id="btnWest"/><br/><br/>
-		<input type="text" name="textinput" id="textinput" value="Enter Directions"/>
+		<input type="text" name="textinput" id="textinput" value="Enter Commands"/>
 		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()"/><br/><br/>
 		<input type="button" value="Take Item" onclick="take()" id="btnTake"/>
 		<input type="button" value="Check Inventory" onclick="checkInventory()" id="btnInventory"/><br/><br/>
-		<center><input type="button" value="Need Help?" onclick="HelpTime()" id="btnHelp"/></center><br/>
+		<input type="button" value="Need Help?" onclick="HelpTime()" id="btnHelp"/><br/>
 	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
 			Click to send me feedback on my fourth project, Game v0.6</a><br/><br/>Created and Developed by Nick Esposito 2017
 	 </p>
-	<center><p><strong>Note: This game is not affiliated with Marist College</strong></p></center>
-	</body>
-</html>
+	<p><strong>Note: This game is not affiliated with Marist College</strong></p>
 <script type = "text/javascript">
 //GAME JS
+//Updated Game v0.6
 var currentLoc = 0;
 var init = false ;
 //Score Variables
@@ -75,15 +70,16 @@ var VisitLoc6 = false;
 var VisitLoc7 = false;
 var VisitLoc8 = false;
 var VisitLoc9 = false;
- //Inventory System- has an empty array, using the .push to add variables to this is best option for inventory
+//Inventory System- has an empty array, using the .push to add variables to this is best option for inventory
 var userInventory = []
- //This will be for collecting items! TAKE BUTTON!!!!
+//This will be for collecting items! TAKE BUTTON!!!!
 var pizza = true
-var beer= true
- /////////////////////////////////////////
- //Command box
+var beer = true
+var beerMoney = true
+/////////////////////////////////////////
+//Command box
  function btnEnterCommands_click() {
-    var message = "Invalid Command. Please try again! Valid commands are N, n (north), S, s (south), E, e (east), and W, w (west).";
+    var message = "Invalid Command. Please try again! Click Need Help? to see valid commands!";
 	var userText = document.getElementById("textinput").value;
 	if (userText === "N" || userText === "n") {
 		btnNorth_click();	
@@ -107,9 +103,14 @@ var beer= true
  function HelpTime() {
 	var message = "The follwing commands can be entered into the textbox:" +
 				  " N, n (north), S, s (south), E, e (east), and W, w (west)" +
-				  " I, i (check inventory), T, t (take item), H, h (need help?)!";
+				  " I, i (check inventory), T, t (take item), H, h (need help?)!" +
+				  " The maximum score in this game is 50 points, since there are 10 locations and you get 5 points" +
+				  " when you visit a location for the first time. The game map can assist you in finding different locations" +
+				  " and the correct direction to move in. The Take button will be enabled at locations where you can take items." +
+				  " You can only move in the cardinal directions (N, S, E, W) in this game! There are only three items you can take." ;
 	alert(message);
 	}
+//Buttons now use switch case
 //NORTH
  function btnNorth_click() {
 	ButtonTime();
@@ -130,7 +131,7 @@ var beer= true
 		default: UpdateDisplay(message);
 	 }
  }
- //SOUTH
+//SOUTH
  function btnSouth_click() {
 	ButtonTime();
 	var message = "Wrong way. Try another Direction!";
@@ -150,7 +151,7 @@ var beer= true
 		default: UpdateDisplay(message);
 	 }
  }
- //EAST
+//EAST
  function btnEast_click() {
 	ButtonTime();
 	var message = "Wrong way. Try another Direction!";
@@ -170,7 +171,7 @@ var beer= true
 		default: UpdateDisplay(message);
 	 }
  }
- //WEST
+//WEST
  function btnWest_click() {
 	ButtonTime();
 	var message = "Wrong way. Try another Direction!";
@@ -190,8 +191,9 @@ var beer= true
 		default: UpdateDisplay(message);
 	 }
  }
- //End of Directional Buttons
- //TAKE Function, will use .push to add to inventory array
+//End of Directional Buttons
+//TAKE Function, will use .push to add to inventory array
+// WILL DISPLAY AS [PIZZA] ETC....SUPPOSED TO BE LIKE THIS
  function take() {
 	 var message = "Item is now in your inventory!";
 	 if ((currentLoc === 5) && (beer)) {
@@ -201,6 +203,10 @@ var beer= true
 	 } else if ((currentLoc === 6) && (pizza)) {
 		 pizza = false;
 		 userInventory.push("[PIZZA]");
+		 gameMessage(message);
+	 } else if ((currentLoc === 4) && (beerMoney)) {
+		 beerMoney = false;
+		 userInventory.push("[$5]");
 		 gameMessage(message);
 	 }
  }
@@ -226,11 +232,13 @@ function checkInventory() {
 //
 //Enabling and Disabling buttons
 // Created via boolean function
+//TAKE button will enable at locations where you can take items
 function ButtonTime() {
 	document.getElementById("btnEast").disabled = false;
     document.getElementById("btnWest").disabled = false;
     document.getElementById("btnSouth").disabled = false;
     document.getElementById("btnNorth").disabled = false;
+	document.getElementById("btnTake").disabled = false;
 	}
 function NoNoNorth() {
 	document.getElementById("btnNorth").disabled = true;
@@ -244,53 +252,54 @@ function NoNoEast() {
 function NoNoWest() {
 	document.getElementById("btnWest").disabled = true;
 	}
+function NoNoTake() {
+	document.getElementById("btnTake").disabled = true;
+	}
 ////////////////
-	//Score function adapted from Alan's Game
-		function ScoreTime() {
-			if ((! VisitLoc0) && (currentLoc === 0)) {
-			score += 5;
-			document.getElementById("score").innerHTML = score;	
-			VisitLoc0 = true; 
-			} else if ( (! VisitLoc1) && (currentLoc === 1) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;	
-			VisitLoc1 = true;
-			} else if ( (! VisitLoc2) && (currentLoc === 2) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc2 = true;
-			} else if ( (! VisitLoc3) && (currentLoc === 3) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score ;
-			VisitLoc3 = true;
-			} else if ( (! VisitLoc4) && (currentLoc === 4) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc4 = true;
-			} else if ( (! VisitLoc5) && (currentLoc === 5) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc5 = true;
-			}
-			else if ( (! VisitLoc6) && (currentLoc === 6) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc6 = true;
-			}
-			else if ( (! VisitLoc7) && (currentLoc === 7) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc7 = true;
-			}
-			else if ( (! VisitLoc8) && (currentLoc === 8) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc8 = true;
-			}
-			else if ( (! VisitLoc9) && (currentLoc === 9) ) {            
-			score += 5;
-			document.getElementById("score").innerHTML = score;
-			VisitLoc9 = true;
-			}
+//Score function adapted from Alan's Game
+	function ScoreTime() {
+		if ((! VisitLoc0) && (currentLoc === 0)) {
+		score += 5;
+		document.getElementById("score").innerHTML = score;	
+		VisitLoc0 = true; 
+		} else if ( (! VisitLoc1) && (currentLoc === 1) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;	
+		VisitLoc1 = true;
+		} else if ( (! VisitLoc2) && (currentLoc === 2) ) {           
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc2 = true;
+		} else if ( (! VisitLoc3) && (currentLoc === 3) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score ;
+		VisitLoc3 = true;
+		} else if ( (! VisitLoc4) && (currentLoc === 4) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc4 = true;
+		} else if ( (! VisitLoc5) && (currentLoc === 5) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc5 = true;
+		} else if ( (! VisitLoc6) && (currentLoc === 6) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc6 = true;
+		} else if ( (! VisitLoc7) && (currentLoc === 7) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc7 = true;
+		} else if ( (! VisitLoc8) && (currentLoc === 8) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc8 = true;
+		} else if ( (! VisitLoc9) && (currentLoc === 9) ) {            
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		VisitLoc9 = true;
 		}
+	}
 </script>
+</body>
+</html>
