@@ -2,7 +2,11 @@
 //NE
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //LAST UPDATED 111417
+=======
+//LAST UPDATED 111017
+>>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
 =======
 //LAST UPDATED 111017
 >>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
@@ -16,6 +20,7 @@
 var currentLoc = 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 var score = 0;
 var userInventory = []
 var North = 0;
@@ -27,6 +32,8 @@ var init = false;
 //Loc function
 function loc (id, name, desc, item){
 =======
+=======
+>>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
 =======
 >>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
 var nextcurrentLoc = 0;
@@ -148,7 +155,10 @@ function item (id, name, desc) {
 	this.desc = desc;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	this.isTaken = false;
+=======
+>>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
 =======
 >>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
 =======
@@ -313,6 +323,10 @@ function NoNoTake() {
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+	
+>>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
+=======
 	
 >>>>>>> 0e6af183b6c6a0c0f98f9a560e354389de36d021
 =======
