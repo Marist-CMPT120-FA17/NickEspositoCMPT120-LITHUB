@@ -119,9 +119,6 @@ function lookTime() {
 	var message = "";
 	message = locations[currentLoc].desc;
 	UpdateDisplay(message);
-	if (nextLoc === -1) {
-	UpdateDisplay("Wrong way. Try another Direction!");
-}
 }
 //Introducing basic logic, will be a lot less code than if/else and switch-case
 //create one function to control btn clicks
@@ -130,10 +127,10 @@ function nextLoc(move) {
 	var message = "Wrong way. Try another Direction!";
 	if (nextLoc >= 0) {
 		currentLoc = nextLoc;
-	} else if (nextLoc === -1) {
+	} else if (nexrLoc === -1) {
 		UpdateDisplay(message);
 	} 
-	}
+}
 function DisableTime() {
 	var disable = 0;
 	for (j=0; j < btn.length; j++) {
@@ -194,7 +191,7 @@ function gameMessage(message) {
 function checkInventory() {
 	var playerInventory = "";
 	for (j=0; j < userInventory.length; j++) {
-		playerInventory = "Your Inventory:" + playerInventory + userInventory[j];
+		playerInventory = "|" + playerInventory + userInventory[j] + " | ";
 	}
 	gameMessage(playerInventory);
 }
