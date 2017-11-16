@@ -1,7 +1,7 @@
 //Project 5 Javascript
 //NE
 //Nick Esposito
-//LAST UPDATED 11-15-2017
+//LAST UPDATED 11-16-2017
 //Project 5 - Game v0.8
 ///////////////////////
 ///////////////////////
@@ -28,16 +28,16 @@ function loc (id, name, desc, item){
 	}
 }
 //Declaring locations (Id,name,desc. of location, item or not)
-var UpperNew = new loc (0, "Upper New", "You're back at Upper New. Go back out again or call it a night!", null);
-var Darbys = new loc (1, "Darbys", "You guys arrive at Darby O'Gills, and the place is packed beacuse its 2 for $1 night!", null);
-var Donnelly = new loc (2, "Donnelly Hall", "You are at Donnelly Hall hailing a cab, see where that takes you! But first, you meet your friend with your new ID!", fakeId);
-var Union = new loc (3, "Union", "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.", null);
-var RiverStation = new loc (4, "River Station", "You now go to River Station, and you found five dollars on the ground in line. TAKE it!", beerMoney);
-var ClubTT = new loc (5, "Club 33", "You reach Club 33, the up and coming alternative to Union. Only upside is they're offering FREE BEER! TAKE the beer!", beer);
-var Gias = new loc (6, "Gias", "You guys take a quick stop at Gia's Pizza, one of the finest in Poughkeepsie. TAKE your pizza!", pizza);
-var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", null);
-var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", null);
-var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", null);
+var UpperNew = new loc (0, "Upper New", "You're back at Upper New. Go back out again or call it a night!", null, false);
+var Darbys = new loc (1, "Darbys", "You guys arrive at Darby O'Gills, and the place is packed beacuse its 2 for $1 night!", null, false);
+var Donnelly = new loc (2, "Donnelly Hall", "You are at Donnelly Hall hailing a cab, see where that takes you! But first, you meet your friend with your new ID!", fakeId, false);
+var Union = new loc (3, "Union", "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.", null, false);
+var RiverStation = new loc (4, "River Station", "You now go to River Station, and you found five dollars on the ground in line. TAKE it!", beerMoney, false);
+var ClubTT = new loc (5, "Club 33", "You reach Club 33, the up and coming alternative to Union. Only upside is they're offering FREE BEER! TAKE the beer!", beer, false);
+var Gias = new loc (6, "Gias", "You guys take a quick stop at Gia's Pizza, one of the finest in Poughkeepsie. TAKE your pizza!", pizza, false);
+var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", null, false);
+var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", null, false);
+var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", null, false);
 //Array for locations
 var locations = [UpperNew,Darbys,Donnelly,Union,RiverStation,ClubTT,Gias,Amicis,BillyBobs,FratHouse]
 //Items protoype
@@ -97,24 +97,28 @@ function btnNorth_click() {
 	nextLoc(North);
 	lookTime();
 	DisableTime();
+	ScoreTime();
 }
 function btnSouth_click() {
 	nextLoc(South);
 	lookTime();
 	DisableTime();
+	ScoreTime();
 }
 function btnEast_click() {
 	nextLoc(East);
 	lookTime();
 	DisableTime();
+	ScoreTime();
 }
 function btnWest_click () {
 	nextLoc(West);
 	lookTime();
 	DisableTime();
+	ScoreTime();
 }
 //
-//lookTime function, something new:)
+//lookTime function, something new!
 function lookTime() {
 	var message = "";
 	message = locations[currentLoc].desc;
@@ -127,7 +131,7 @@ function nextLoc(move) {
 	var message = "Wrong way. Try another Direction!";
 	if (nextLoc >= 0) {
 		currentLoc = nextLoc;
-	} else if (nexrLoc === -1) {
+	} else if (nextLoc === -1) {
 		UpdateDisplay(message);
 	} 
 }
@@ -147,7 +151,7 @@ function btnEnterCommands_click() {
     var message = "Invalid Command. Please try again! Click Need Help? to see valid commands!";
 	var userText = document.getElementById("textinput").value;
 	if (userText === "N" || userText === "n") {
-		btnNorth_click();	
+		btnNorth_click();
 	} else if (userText === "S" || userText ==="s"){
 		btnSouth_click();
 	} else if (userText === "E" || userText ==="e"){
@@ -168,7 +172,7 @@ function btnEnterCommands_click() {
 function Take() {
 	var checkItem = locations[currentLoc];
 	if (checkItem.item === null) {
-		gameMessage("This is nothing to take here!");
+		gameMessage("There is nothing to take here!");
 	} else {
 	userInventory.push(items[currentLoc].name);
 	gameMessage("Item is now in your inventory! " + items[currentLoc].desc);
@@ -191,7 +195,7 @@ function gameMessage(message) {
 function checkInventory() {
 	var playerInventory = "";
 	for (j=0; j < userInventory.length; j++) {
-		playerInventory = "|" + playerInventory + userInventory[j] + " | ";
+		playerInventory = "|" + playerInventory + userInventory[j] + "|";
 	}
 	gameMessage(playerInventory);
 }
@@ -225,30 +229,4 @@ function ScoreTime() {
 		ScoreLook.visited = true;
 	}
 }
-////
-//Enabling and Disabling buttons
-// Created via boolean function
-//TAKE button will enable at locations where you can take items
-function ButtonTime() {
-	document.getElementById("btnEast").disabled = false;
-    document.getElementById("btnWest").disabled = false;
-    document.getElementById("btnSouth").disabled = false;
-    document.getElementById("btnNorth").disabled = false;
-	document.getElementById("btnTake").disabled = false;
-	}
-function NoNoNorth() {
-	document.getElementById("btnNorth").disabled = true;
-	}
-function NoNoSouth() {
-	document.getElementById("btnSouth").disabled = true;
-	}
-function NoNoEast() {
-	document.getElementById("btnEast").disabled = true;
-	}
-function NoNoWest() {
-	document.getElementById("btnWest").disabled = true;
-	}
-function NoNoTake() {
-	document.getElementById("btnTake").disabled = true;
-	}
-////////////////
+////END GAME V0.8
