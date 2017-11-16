@@ -195,7 +195,7 @@ function gameMessage(message) {
 function checkInventory() {
 	var playerInventory = "";
 	for (j=0; j < userInventory.length; j++) {
-		playerInventory = "|" + playerInventory + userInventory[j] + "|";
+		playerInventory = playerInventory + "|" + userInventory[j] + "|";
 	}
 	gameMessage(playerInventory);
 }
