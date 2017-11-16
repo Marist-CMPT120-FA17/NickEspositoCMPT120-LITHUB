@@ -22,20 +22,20 @@ function loc (id, name, desc, item){
     this.item = item;
     this.visited = false;
 	function toString() {
-		return desc;
+		return name + desc;
 	}
 }
 //Declaring locations (Id,name,desc. of location, item or not)
-var UpperNew = new loc (0, "Upper New", "You're back at Upper New. Go back out again or call it a night!", false);
-var Darbys = new loc (1, "Darbys", "You guys arrive at Darby O'Gills, and the place is packed beacuse its 2 for $1 night!", false);
-var Donnelly = new loc (2, "Donnelly Hall", "You are at Donnelly Hall hailing a cab, see where that takes you!", false);
-var Union = new loc (3, "Union", "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.", false);
+var UpperNew = new loc (0, "Upper New", "You're back at Upper New. Go back out again or call it a night!", null);
+var Darbys = new loc (1, "Darbys", "You guys arrive at Darby O'Gills, and the place is packed beacuse its 2 for $1 night!", null);
+var Donnelly = new loc (2, "Donnelly Hall", "You are at Donnelly Hall hailing a cab, see where that takes you!", null);
+var Union = new loc (3, "Union", "You walked a few blocks, and now you are at Union Tavern, a LEGNENDARY bar! But the bar has a HUGE line. Should we wait or stay? Your call.", null);
 var RiverStation = new loc (4, "River Station", "You now go to River Station, and you found five dollars on the ground in line. TAKE it!", beerMoney);
 var ClubTT = new loc (5, "Club 33", "You reach Club 33, the up and coming alternative to Union. Only upside is they're offering FREE BEER! TAKE the beer!", beer);
 var Gias = new loc (6, "Gias", "You guys take a quick stop at Gia's Pizza, one of the finest in Poughkeepsie. TAKE your pizza!", pizza);
-var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", false);
-var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", false);
-var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", false);
+var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", null);
+var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", null);
+var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", null);
 //Array for locations
 var locations = [UpperNew,Darbys,Donnelly,Union,RiverStation,ClubTT,Gias,Amicis,BillyBobs,FratHouse]
 //Items protoype
@@ -49,27 +49,30 @@ function item (id, name, desc) {
 	}
 }
 //Declaring items (Id,name,desc. of item)
-var beer = new item (0, "Beer", "This Bud Light is Rocky Mountain Cold!", false);
-var pizza = new item (1, "Pizza", "Gia's pizza is the freaking BOMB!", false);
-var beerMoney = new item (2, "Beer Money", "Sweet! Five Dollars!", false);
+var beer = new item (5, "Beer", "This Bud Light is Rocky Mountain Cold!", false);
+var pizza = new item (6, "Pizza", "Gia's pizza is the freaking BOMB!", false);
+var beerMoney = new item (4, "Beer Money", "Sweet! Five Dollars!", false);
 //Array for items
-var items = [beer,pizza,beerMoney]
-//
+//Numbers are currentLoc where items are
+var items = new Array();
+items[5]= beer
+items[6]= pizza;
+items[4]= beerMoney;
 //Movement 
 //reworking this BIGLY!!!!!!!:)
 //Each array reps currentLoc, value represents movement based on N,S,E,W btn click, 0-9 loc in order
 ////
-var Movement = [
-						   [1,2,3,4],				
-						   [-1,0,8,-1],
-						   [0,-1,6,4],
-						   [5,6,9,0],
-						   [-1,7,0,-1],
-						   [8,3,-1,1],
-						   [3,-1,-1,2],
-						   [4,-1,2,-1],
-						   [-1,5,-1,-1],
-						   [-1,-1,-1,3]
+var Movement = [           /*N S E W */
+						   [1,2,3,4],	//0			
+						   [-1,0,5,-1],	//1
+						   [0,-1,6,4],	//2
+						   [5,6,9,0],	//3
+						   [-1,7,0,-1],	//4
+						   [8,3,-1,1],	//5
+						   [3,-1,-1,2],	//6
+						   [4,-1,2,-1],	//7
+						   [-1,5,-1,-1], //8
+						   [-1,-1,-1,3], //9
 						   ]
 //create array to enable/disable buttons!
 //Directional Buttons
@@ -102,9 +105,9 @@ function nextLoc(move) {
 	var nextLoc = Movement[currentLoc][move];
 	if (nextLoc >= 0) {
 		currentLoc = nextLoc;
-	} else {
+	} else if (nextLoc < 0) {
 		UpdateDisplay("Wrong way. Try another Direction!");
-	}
+	} 
 }
 //Command box
  function btnEnterCommands_click() {
@@ -130,10 +133,16 @@ function nextLoc(move) {
 }
 //Upgrading Take function from v0.6
 function Take() {
+	var checkItem = locations[currentLoc];
+	if (checkItem.item === null) {
+		gameMessage("This is nothing to take here!");
+	} else {
 	userInventory.push(items[currentLoc].name);
-	gameMessage("Item is now in your inventory!" + items[currentLoc].name);
-	items[currentLoc].isTaken = true;
-}	
+	gameMessage("Item is now in your inventory! " + items[currentLoc].desc);
+	locations[currentLoc].item = null;
+	}
+}
+////
 //Keeping same from previous version	
 //Textarea for var message for each button, coming from each locations function
 function UpdateDisplay(MSGTA) {
@@ -164,15 +173,25 @@ function Init() {
 }
 //Help function for help button
 function HelpTime() {
-	var message = "The follwing commands can be entered into the textbox:" +
+	var message = "The following commands can be entered into the textbox:" +
 				  " N, n (north), S, s (south), E, e (east), and W, w (west)" +
 				  " I, i (check inventory), T, t (take item), H, h (need help?)!" +
 				  " The maximum score in this game is 50 points, since there are 10 locations and you get 5 points" +
 				  " when you visit a location for the first time. The game map can assist you in finding different locations" +
-				  " and the correct direction to move in. The Take button will be enabled at locations where you can take items." +
-				  " You can only move in the cardinal directions (N, S, E, W) in this game! There are only three items you can take." ;
+				  " and the correct direction to move in." +
+				  " You can only move in the cardinal directions (N, S, E, W) in this game! There are only FOUR items you can take." ;
 	alert(message);
 	}
+////
+//New ScoreTime function
+function ScoreTime() {
+	var ScoreLook = locations[currentLoc];
+	if(ScoreLook.visited === false) {
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		ScoreLook.visited = true;
+	}
+}
 ////
 //Enabling and Disabling buttons
 // Created via boolean function
