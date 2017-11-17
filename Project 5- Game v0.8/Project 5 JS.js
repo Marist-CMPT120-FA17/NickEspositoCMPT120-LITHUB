@@ -14,6 +14,7 @@ var North = 0;
 var South = 1;
 var East = 2;
 var West = 3;
+var BAD = -1;
 var init = false;
 //
 //Loc function
@@ -62,7 +63,7 @@ items[5]= beer
 items[6]= pizza;
 items[4]= beerMoney;
 items[2]= fakeId;
-//Movement 
+//Movement- using a matrix, so much easier than switch-case
 //reworking this BIGLY!!!!!!!:)
 //Each array reps currentLoc, value represents movement based on N,S,E,W btn click, 0-9 loc in order
 ////
@@ -79,7 +80,7 @@ var Movement = [           /*N S E W */
 						   [-1,5,-1,-1], //8
 						   [-1,-1,-1,3], //9
 						   ]
-//create array to enable/disable buttons!, 1 is disable
+//create matrix>>array to enable/disable buttons!, 1 is disable
 var NoNoBtn = [				/*N S E W*/
 							[0,0,0,0],  //0
 							[1,0,0,1],	//1
@@ -124,17 +125,16 @@ function lookTime() {
 	message = locations[currentLoc].desc;
 	UpdateDisplay(message);
 }
-//Introducing basic logic, will be a lot less code than if/else and switch-case
+//Introducing basic logic, will be a lot less code than if/else and switch-case, will use for navigation
 //create one function to control btn clicks
 function nextLoc(move) {
-	var nextLoc = Movement[currentLoc][move];
-	var message = "Wrong way. Try another Direction!";
-	if (nextLoc >= 0) {
-		currentLoc = nextLoc;
-	} else if (nextLoc === -1) {
-		UpdateDisplay(message);
-	} 
+	var next = Movement[currentLoc][move];
+	if (next >= 0) {
+		currentLoc = next;
+	} else {
+		UpdateDisplay("Invalid Direction. Try again!"); }
 }
+//Created a matrix to disable certain btns, uses btn array tod decipher which buttons to toggle
 function DisableTime() {
 	var disable = 0;
 	for (j=0; j < btn.length; j++) {
