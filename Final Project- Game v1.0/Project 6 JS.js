@@ -110,24 +110,23 @@ function btnWest_click() {
 //Introducing basic logic, will be a lot less code than if/else and switch-case, will use for navigation
 //create one function to control btn clicks
 function nextLoc(move) {
+	var message = "Wrong Way!";
 	var next = Movement[currentLoc][move];
-	if (next => 0) {
+	if (next >= 0) {
 		currentLoc = next;
 		lookTime();
-	} else if (next === -1){
-		currentLoc === currentLoc;
-		gameMessage("Wrong Way, try again!");
-		return nextLoc;
+	} else {
+		gameMessage(message);
 	}
-	DisableTime();
-	ScoreTime();
-	gameMessage("");
 }
 //lookTime function, something new!
 function lookTime() {
 	var message = "";
 	message = locations[currentLoc].desc;
 	UpdateDisplay(message);
+	DisableTime();
+	ScoreTime();
+	gameMessage("");
 }
 ////
 //Created a matrix to disable certain btns, uses btn array tod decipher which buttons to toggle
@@ -137,7 +136,6 @@ function DisableTime() {
 		disable = NoNoBtn[currentLoc][j];
 	  if (disable === 1) {
 	  document.getElementById(btn[j]).disabled = true;
-	  gameMessage("Disable Time working");
 	  } else {
 	  document.getElementById(btn[j]).disabled = false;
 	 }
