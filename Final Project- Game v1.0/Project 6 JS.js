@@ -1,7 +1,7 @@
 //Project 6 Javascript
 //NE
 //Nick Esposito
-//LAST UPDATED 11-27-2017
+//LAST UPDATED 11-29-2017
 //Project 6 - Game v1.0
 ///////////////////////
 ///////////////////////
@@ -38,6 +38,7 @@ var Gias = new loc (6, "Gias", "You guys take a quick stop at Gia's Pizza, one o
 var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", null, false);
 var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", null, false);
 var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", null, false);
+//new secret loc coming soon--STAY TUNED!!!!
 //Array for locations
 var locations = [UpperNew,Darbys,Donnelly,Union,RiverStation,ClubTT,Gias,Amicis,BillyBobs,FratHouse]
 //Items protoype
@@ -67,7 +68,7 @@ items[2]= fakeId;
 //Each array reps currentLoc, value represents movement based on N,S,E,W btn click, 0-9 loc in order
 ////
 var btn = ["btnNorth","btnSouth","btnEast","btnWest"]
-var Movement = [           /*N S E W */
+var Movement = [           /*N S E W*/
 						   [1,2,3,4],	//0			
 						   [-1,0,5,-1],	//1
 						   [0,-1,6,7],	//2
@@ -93,69 +94,42 @@ var NoNoBtn = [				/*N S E W*/
 							[1,1,1,0],	//9
 							]
 //Directional Buttons
-/*function btnNorth_click() {
+function btnNorth_click() {
 	nextLoc(North);
-	lookTime();
-	DisableTime();
-	ScoreTime();
 }
 function btnSouth_click() {
 	nextLoc(South);
-	lookTime();
-	DisableTime();
-	ScoreTime();
 }
 function btnEast_click() {
 	nextLoc(East);
-	lookTime();
-	DisableTime();
-	ScoreTime();
 }
-function btnWest_click () {
+function btnWest_click() {
 	nextLoc(West);
-	lookTime();
+}
+////
+//Introducing basic logic, will be a lot less code than if/else and switch-case, will use for navigation
+//create one function to control btn clicks
+function nextLoc(move) {
+	var next = Movement[currentLoc][move];
+	if (next => 0) {
+		currentLoc = next;
+		lookTime();
+	} else if (next === -1){
+		currentLoc === currentLoc;
+		gameMessage("Wrong Way, try again!");
+		return nextLoc;
+	}
 	DisableTime();
 	ScoreTime();
-}*/
-function CommandTime(move) {
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
+	gameMessage("");
+}
 //lookTime function, something new!
 function lookTime() {
 	var message = "";
 	message = locations[currentLoc].desc;
 	UpdateDisplay(message);
 }
-//Introducing basic logic, will be a lot less code than if/else and switch-case, will use for navigation
-//create one function to control btn clicks
-function nextLoc(move) {
-	if (move <= 3) {
-	var next = Movement[currentLoc][move];
-	if (next >= 0) {
-		currentLoc = next;
-	} else if (next === -1) {
-		UpdateDisplay("Invalid Direction. Try again!"); }
-	var message = "";
-	message = locations[currentLoc].desc;
-	UpdateDisplay(message);
-}
-}
+////
 //Created a matrix to disable certain btns, uses btn array tod decipher which buttons to toggle
 function DisableTime() {
 	var disable = 0;
@@ -163,14 +137,24 @@ function DisableTime() {
 		disable = NoNoBtn[currentLoc][j];
 	  if (disable === 1) {
 	  document.getElementById(btn[j]).disabled = true;
+	  gameMessage("Disable Time working");
 	  } else {
 	  document.getElementById(btn[j]).disabled = false;
 	 }
 }
 }
+//New ScoreTime function
+function ScoreTime() {
+	var ScoreLook = locations[currentLoc];
+	if(ScoreLook.visited === false) {
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		ScoreLook.visited = true;
+	}
+}
 //Command box
 function btnEnterCommands_click() {
-   var message = "Invalid Command. Please try again! Click Need Help? to see valid commands!";
+   var message = "Invalid Command. Please try again! Click Need Help to see valid commands!";
 	var userText = document.getElementById("textinput").value;
 	if (userText === "N" || userText === "n") {
 		btnNorth_click();
@@ -187,7 +171,7 @@ function btnEnterCommands_click() {
 	} else if (userText === "H" || userText ==="h") {
 		HelpTime();							
 	} else {
-		UpdateDisplay(message);
+		gameMessage(message);
 	}
 }
 //Upgrading Take function from v0.6
@@ -242,13 +226,4 @@ function HelpTime() {
 	alert(message);
 	}
 ////
-//New ScoreTime function
-function ScoreTime() {
-	var ScoreLook = locations[currentLoc];
-	if(ScoreLook.visited === false) {
-		score += 5;
-		document.getElementById("score").innerHTML = score;
-		ScoreLook.visited = true;
-	}
-}
-////END GAME V0.8
+////END GAME V1.0
