@@ -11,7 +11,6 @@ var currentLoc = 0;
 var nextLocation = 0;
 var score = 0;
 var userInventory = []
-var itemsTaken = []
 var North = 0;
 var South = 1;
 var East = 2;
@@ -40,11 +39,7 @@ var Gias = new loc (6, "Gias", "You guys take a quick stop at Gia's Pizza, one o
 var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", null, false);
 var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", null, false);
 var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", null, false);
-<<<<<<< HEAD
 var SecretRoom = new loc(20, "Secret Location", "Secret room test", null, false);
-=======
-var SecretRoom = new loc(10, "Secret", "You have reached the secret bar, congrats!", null, false);
->>>>>>> 0a8a52f2f6501ee424f76ec0727b86eadaa1f581
 //new secret loc coming soon--STAY TUNED!!!!
 //Array for locations
 var locations = [UpperNew,Darbys,Donnelly,Union,RiverStation,ClubTT,Gias,Amicis,BillyBobs,FratHouse,SecretRoom]
@@ -86,11 +81,7 @@ var Movement = [           /*N S E W*/
 						   [4,-1,2,-1],	//7
 						   [10,5,-1,-1], //8
 						   [-1,-1,-1,3], //9
-<<<<<<< HEAD
-						   [-1,-1,-1,-1],
-=======
 						   [-1,-1,-1,-1], //10
->>>>>>> 0a8a52f2f6501ee424f76ec0727b86eadaa1f581
 						   ]
 //create matrix>>array to enable/disable buttons!, 1 is disable
 var NoNoBtn = [				/*N S E W*/
@@ -104,11 +95,7 @@ var NoNoBtn = [				/*N S E W*/
 							[0,1,0,1],	//7
 							[0,0,1,1],	//8
 							[1,1,1,0],	//9
-<<<<<<< HEAD
 							[1,1,1,1],  //10
-=======
-							[1,1,1,1], 	//10
->>>>>>> 0a8a52f2f6501ee424f76ec0727b86eadaa1f581
 							]
 //Directional Buttons
 function btnNorth_click() {
@@ -128,35 +115,27 @@ function btnWest_click() {
 //create one function to control btn clicks
 function nextLoc(move) {
 	var message = "Wrong Way!";
-<<<<<<< HEAD
 	nextLocation = Movement[currentLoc][move];
 	if (nextLocation >= 0) {
-		currentLoc = nextLocation;
 		lookTime(nextLocation);
 	} else {		
-=======
-	var next = Movement[currentLoc][move];
-	if (next >= 0) {
-		currentLoc = next;
-		lookTime();
-		SecretTime();
-	} else {
->>>>>>> 0a8a52f2f6501ee424f76ec0727b86eadaa1f581
 		gameMessage(message);
 	}
 }
 //lookTime function, something new!
 function lookTime(nextLocation) {
 	var message = "";
-	message = locations[currentLoc].desc;
-	if (nextLocation == 10) {
-		if (userInventory.length > 3) {
+	message = locations[nextLocation].desc;
+	if (nextLocation >= 10) {
+	if (userInventory.length > 3) {
+			currentLoc = nextLocation;
 			UpdateDisplay(message);
 			gameMessage("you win");
 		} else {
 		gameMessage("get more items to proceed");
-		}
+	}
 	} else {
+	currentLoc = nextLocation;
 	UpdateDisplay(message);
 	gameMessage("");
 	}
@@ -183,14 +162,6 @@ function ScoreTime() {
 		score += 5;
 		document.getElementById("score").innerHTML = score;
 		ScoreLook.visited = true;
-	}
-}
-//Room Unlock
-function SecretTime() {
-	if (userInventory.length = 4 && currentLoc === 8) {
-		lookTime();
-	} else if (currentLoc === 8) {
-		gameMessage("get more items!");
 	}
 }
 //Command box
@@ -222,7 +193,6 @@ function Take() {
 		gameMessage("There is nothing to take here!");
 	} else {
 	userInventory.push(items[currentLoc].name);
-	itemsTaken.push(items[currentLoc].name);
 	gameMessage("Item is now in your inventory! " + items[currentLoc].desc);
 	locations[currentLoc].item = null;
 	}
