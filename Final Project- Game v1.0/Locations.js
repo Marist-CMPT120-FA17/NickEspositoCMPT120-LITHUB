@@ -1,4 +1,4 @@
-//Locations.js for v1.o
+//Locations.js for v1.0
 //Nick Esposito
 //Loc function
 function loc (id, name, desc, item){
@@ -48,3 +48,4 @@ items[5]= beer
 items[6]= pizza;
 items[4]= beerMoney;
 items[2]= fakeId;
+//End Locations.js
