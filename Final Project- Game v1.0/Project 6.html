@@ -8,7 +8,8 @@
 		<meta charset="utf-8">
 		<title>The Nightlife at Marist</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script type = "text/javascript" src="Project 6 JS.js"></script>
+		<script type = "text/javascript" src="Locations.js"></script>
+		<script type = "text/javascript" src="Game.js"></script>
 		<!-- Borders and Style CSS Section -->
 		<!-- See Chapter 4 in Textbook for borders -->
 		<script type = "text/javascript">
@@ -20,8 +21,6 @@
 		</script>
 	</head>
 	<body onload="Init();" class = "thick blue double">
-		<div class="pic1"></div>
-		<div class="pic2"></div>
 		<p id = "p1">The Nightlife at Marist</p>
 		<img src="https://s3-us-west-2.amazonaws.com/asset.plexuss.com/college/logos/Marist_College.jpg" alt="Marist College Logo" style="width:150px;height:150px;"/>
 		<br/>
@@ -41,13 +40,15 @@
 		<input type="button" value="East" onclick="btnEast_click()" id="btnEast"/>
 		<input type="button" value="West" onclick="btnWest_click()" id="btnWest"/><br/><br/>
 		<input type="text" name="textinput" id="textinput" value="Enter Commands"/>
-		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()"/><br/><br/>
+		<input type="button" value="Enter Commands" onclick="btnEnterCommands_click()" id="btnCommand"/><br/><br/>
 		<input type="button" value="Take Item" onclick="Take()" id="btnTake"/>
 		<input type="button" value="Check Inventory" onclick="checkInventory()" id="btnInventory"/><br/><br/>
 		<input type="button" value="Need Help?" onclick="HelpTime()" id="btnHelp"/><br/><br/>
-		<input type="button" value="Not Having Fun?" onclick="FunTime()" id="btnfun"/>
+		<input type="button" value="Not Having Fun?" onclick="FunTime()" id="btnFun"/>
 	 <p> <a href = "mailto:Nicholas.Esposito5@marist.edu">
-			Click to send me feedback!</a><br/><br/>Created and Developed by Nick Esposito ©2017
+			Click to send me feedback!</a><br/><br/>
+			<input type="button" value="Nick on LinkedIn" onclick="BioTime()" id="btnBio"/><br/><br/>
+			Created and Developed by Nick Esposito ©2017
 	 </p>
 	<p><strong>Note: This game is not affiliated with Marist College</strong></p>
 </body>
