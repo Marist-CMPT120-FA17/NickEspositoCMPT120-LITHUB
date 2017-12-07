@@ -1,7 +1,8 @@
 //Project 6 Javascript
 //NE
 //Nick Esposito
-//LAST UPDATED 11-29-2017
+//LAST UPDATED 12-04-2017
+//December 7th, 2017
 //Project 6 - Game v1.0
 ///////////////////////
 ///////////////////////
@@ -39,7 +40,7 @@ var Gias = new loc (6, "Gias", "You guys take a quick stop at Gia's Pizza, one o
 var Amicis = new loc (7, "Amicis", "Great, you guys got denied at River, nice work. You're now waiting for cab outside Amici's.", null, false);
 var BillyBobs = new loc (8, "BillyBobs", "You head over to Vassar now to see some of your friends at Billy Bob's, their version of Union to Marist!", null, false);
 var FratHouse = new loc(9, "Frat House", "You stop by the frat house, where the party gets shut down and dispersed two hours in.", null, false);
-var SecretRoom = new loc(20, "Secret Location", "Secret room test", null, false);
+var SecretRoom = new loc(10, "Secret Location", "Congrats! You have now entered the SECRET BAR, the most exclusive bar around town! Enjoy the rest of your night!", null, false);
 //new secret loc coming soon--STAY TUNED!!!!
 //Array for locations
 var locations = [UpperNew,Darbys,Donnelly,Union,RiverStation,ClubTT,Gias,Amicis,BillyBobs,FratHouse,SecretRoom]
@@ -231,11 +232,15 @@ function HelpTime() {
 	var message = "The following commands can be entered into the textbox:" +
 				  " N, n (north), S, s (south), E, e (east), and W, w (west)" +
 				  " I, i (check inventory), T, t (take item), H, h (need help?)!" +
-				  " The maximum score in this game is 50 points, since there are 10 locations and you get 5 points" +
+				  " The maximum score in this game is 55 points, since there are 10 locations and you get 5 points" +
 				  " when you visit a location for the first time. The game map can assist you in finding different locations" +
 				  " and the correct direction to move in." +
-				  " You can only move in the cardinal directions (N, S, E, W) in this game! There are only FOUR items you can take." ;
+				  " You can only move in the cardinal directions (N, S, E, W) in this game! There are only FOUR items you can take." +
+				  " Unlocking the secret location allows you to win the game! You also get 5 points when you advance to the secret location.";
 	alert(message);
 	}
+function FunTime() {
+	window.open("https://www.youtube.com/watch?v=tYrTyxXpIFU");
+}
 ////
 ////END GAME V1.0

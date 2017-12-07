@@ -1,0 +1,16 @@
+			body { text-align: center;
+				  width: 50%;
+				  position: relative;
+				  left: 25%;
+				  border-width: 10px; 
+				  background-color: lightskyblue;
+				  }
+			div { text-align: center; 
+				font-family: arial, sans-serif; 
+				font-weight: bold; color: black;}
+			.thick	{ border-width: thick;	}
+			.double	{ border-style: double; }
+			.blue   { border-color: blue;   }
+			h4   {color: red; font-weight: bold;}
+			#p1{font-weight: bold; color: red; font-size: 24pt; -webkit-text-stroke: 2px black; font-size: 500%;}			}
+			#p2{text-align: center;}
