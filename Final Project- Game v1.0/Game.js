@@ -67,7 +67,7 @@ function btnWest_click() {
 //Introducing basic logic, will be a lot less code than if/else and switch-case, will use for navigation
 //create one function to control btn clicks
 function nextLoc(move) {
-	var message = "Wrong Way!";
+	var message = "Wrong Way! Try another direction!";
 	nextLocation = Movement[currentLoc][move];
 	if (nextLocation >= 0) {
 		lookTime(nextLocation);
